@@ -1,4 +1,4 @@
-# Scraping of FLIGHT DATA of MMT & IXIGO for comparision
+# Scraping of FLIGHT DATA from MMT & IXIGO
 Project is build on Python with the help of requests, selenium library for scraping data from MMT and IXIGO portal.
 PysimpleGUI library is used for application building.
 pandas library to export data to excel
