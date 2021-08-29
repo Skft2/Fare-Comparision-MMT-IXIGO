@@ -9,3 +9,4 @@ pandas library to export data to excel
 3. Google chrome and Chrome Driver
 4. Already Installed library requests,selenium,PysimpleGUI,pandas,JSON,MySQL connector.
 5. Microsoft Excel
+6. MySQL (data for input)
