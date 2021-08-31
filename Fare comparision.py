@@ -1,3 +1,4 @@
+#import all these libraries
 import time
 import mysql.connector as connection
 from selenium import webdriver
@@ -14,9 +15,12 @@ from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 
+#set current date
 currentDay = datetime.now().day
 currentMonth = datetime.now().month
 currentYear = datetime.now().year
+
+#connect MySQL server to python
 con = connection.connect(host='127.0.0.1',user='root',passwd='Oriental1',database='Flight',use_pure=True)
 cur = con.cursor()
 cur.execute('SELECT kinter from codes ORDER BY kinter ASC')
@@ -76,6 +80,7 @@ data = []
 when_mmt = f'{year}{month}{day}'
 
 when_ixi = f'{day}{month}{year}'
+
 
 def mmt():
   
@@ -322,6 +327,7 @@ def ixigo():
 mmt()
 ixigo()
 
+#Export data to Excel
 df_mmt = pd.read_excel(f'{fro}-{to}-{day}{month}{year}mmt.xlsx')
 df_ixi = pd.read_excel(f'{fro}-{to}-{day}{month}{year}ixigo.xlsx')
 
@@ -329,17 +335,20 @@ data = df_mmt.join(df_ixi,lsuffix='_mmt',rsuffix='_ixi')
 
 xyz = data.to_excel(f'Data-{fro}-{to}-{day}{month}{year}.xlsx',index=False,encoding='UTF-8')
 
-
+#Delete extra excels
 os.remove(f'{fro}-{to}-{day}{month}{year}mmt.xlsx')
 os.remove(f'{fro}-{to}-{day}{month}{year}ixigo.xlsx')
 
+#Read existing excel
 data_1 = pd.read_excel(f'Data-{fro}-{to}-{day}{month}{year}.xlsx')
 
+#set data frame for plotting
 data_set = pd.DataFrame(data_1[['Flt_no_mmt','Fare_mmt','Fare_ixi']])
 x = data_set['Flt_no_mmt']
 y = data_set['Fare_mmt']
 z = data_set['Fare_mmt']
 
+#plot bar graph
 axixx = np.arange(len(x))
 plt.bar(axixx- 0.1, y, 0.20, label = 'Fare mmt')
 plt.bar(axixx + 0.1, z, 0.20, label = 'Fare ixi')
