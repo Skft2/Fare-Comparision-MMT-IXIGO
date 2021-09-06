@@ -329,7 +329,10 @@ ixigo()
 
 #Export data to Excel
 df_mmt = pd.read_excel(f'{fro}-{to}-{day}{month}{year}mmt.xlsx')
+df_mmt.sort_values("Airline",axis=0,inplace=True,ascending=True)
+
 df_ixi = pd.read_excel(f'{fro}-{to}-{day}{month}{year}ixigo.xlsx')
+df_ixi.sort_values("Airline",axis=0,inplace=True,ascending=True)
 
 data = df_mmt.join(df_ixi,lsuffix='_mmt',rsuffix='_ixi')
 
